@@ -4,7 +4,7 @@ The above copyright holds for all material in this project that is not part of L
 
 This software is provided 'as-is', without any express or implied warranty. In no event will the authors be held liable for any damages arising from the use of this software.
 
-This program is not free software.
+This program is not free software. Default copyright laws apply.
 
 
 -------
