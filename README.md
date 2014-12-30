@@ -1,4 +1,4 @@
-ArnesBreakout
+Arne's Breakout
 =============
 
 Physics-based ball and brick game written in LUA
