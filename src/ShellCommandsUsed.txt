@@ -1,0 +1,3 @@
+ls *.png | gawk '{print "convert "$1" -transparent \"#FFFFFF\" batch/"$1}' |bash
+
+ls rect*.png | gawk '{print "convert "$1" -fill \"#FFFFFF\" -opaque \"#EEF4F3\" ../batch3/"$1}' | bash
