@@ -1,4 +1,4 @@
-Arne's Breakout [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesBreakout/&title=ArnesBreakout&language=LUA&tags=github&category=software)
+Arne's Breakout           [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesBreakout/&title=ArnesBreakout&language=LUA&tags=github&category=software)
 =============
 
 Physics-based ball and brick game written in LUA
