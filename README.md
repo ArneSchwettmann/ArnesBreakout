@@ -1,4 +1,4 @@
-Arne's Breakout
+Arne's Breakout [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesBreakout/&title=ArnesBreakout&language=LUA&tags=github&category=software)
 =============
 
 Physics-based ball and brick game written in LUA
@@ -11,8 +11,6 @@ Player 2 controls with cursor keys plus shift for turbo, or gamepad (any button 
 Pre-compiled executables for Windows and OSX are in the bin directory. To compile from source under Windows, simply drag the src directory onto Love.exe version 0.8.0. For more information on LÖVE, visit love2d.org.
 
 See License.txt for licensing details
-
-[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesBreakout/&title=ArnesBreakout&language=LUA&tags=github&category=software)
 
 ## Screenshots
 
