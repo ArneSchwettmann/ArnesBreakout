@@ -1,7 +1,7 @@
 Arne's Breakout
 =============
 
-Physics-based ball and brick game written in LUA
+Physics-based ball and brick game written in LUA [![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=arneschwettmann&url=https://github.com/ArneSchwettmann/ArnesBreakout/&title=ArnesBreakout&language=LUA&tags=github&category=software)
 
 This is a version of the classic brick-breaking game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.8.0.
 
