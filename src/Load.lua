@@ -115,7 +115,7 @@ function love.load()
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, Texel(texture, texture_coords).a);
-            if ((mod(floor(screen_coords.x),2) == 0 ) != (mod(floor(screen_coords.y),2) == 1)) 
+            if ((mod(floor(screen_coords.x),2.0) == 0.0 ) != (mod(floor(screen_coords.y),2.0) == 1.0)) 
                discard;
             return pixelColor;
         }
@@ -124,7 +124,7 @@ function love.load()
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, 1.0);
-            if ((mod(floor(screen_coords.x),2) == 0 ) != (mod(floor(screen_coords.y),2) == 1)) 
+            if ((mod(floor(screen_coords.x),2.0) == 0.0 ) != (mod(floor(screen_coords.y),2.0) == 1.0)) 
                discard;
             return pixelColor;
         }
@@ -158,6 +158,9 @@ function love.load()
    
    --pauseGame()
    currentLevel=1
+   if fullscreen then 
+      toggleScaling()
+   end
    titleScreen()
 end
 

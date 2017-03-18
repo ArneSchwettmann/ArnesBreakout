@@ -33,7 +33,7 @@ function getInputPlayer(playerNumber)
 		if numJoysticks>0 then
             joystick = joysticks[1]
 			local numButtons = joystick:getButtonCount()
-			if joystick:getAxesCount()>=1 then
+			if joystick:getAxisCount()>=1 then
 				joyXInput,joyYInput = joystick:getAxes()
 				joyXInput,joyYInput=joyXInput * 500,joyYInput * 500
 			end
