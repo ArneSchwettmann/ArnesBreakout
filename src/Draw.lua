@@ -19,6 +19,10 @@ function love.draw()
  
    if displayingTitleScreen then
       drawTitleScreen()
+      love.graphics.translate(-borderX,-borderY)
+      if graphicsScaleFactor~=1.0 then
+         love.graphics.scale(1.0/graphicsScaleFactor,1.0/graphicsScaleFactor)
+      end
       return
    end
 
@@ -27,14 +31,14 @@ function love.draw()
    -- draw the shadows first
    if drawShadows==true then
    
-      love.graphics.setPixelEffect(shadowDitherShader)
+      love.graphics.setShader(shadowDitherShader)
       for k,obj in ipairs(objects) do
          if obj.image~=nil and obj.hasShadow then
             love.graphics.draw(obj.image, floor(obj.x-obj.halfwidth+shadowOffsetX), floor(obj.y-obj.halfheight)+shadowOffsetY)
          end
       end
      
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end
    
    for k,obj in ipairs(objects) do
@@ -83,6 +87,11 @@ function love.draw()
       love.graphics.print("Starting in: "..(timeToWaitAfterPause-timeSinceUnpausing).." s", centerX-50, centerY-5)
    end
    --]]
+   
+   love.graphics.translate(-borderX,-borderY)
+   if graphicsScaleFactor~=1.0 then
+      love.graphics.scale(1.0/graphicsScaleFactor,1.0/graphicsScaleFactor)
+   end
 end
 
 function drawTitleScreen()
@@ -91,17 +100,17 @@ function drawTitleScreen()
       love.graphics.setColor(255,255,255,255)
       love.graphics.draw(backgrounds[currentLevel],0,0)
       if drawShadows==true then
-         love.graphics.setPixelEffect(shadowDitherShader)
+         love.graphics.setShader(shadowDitherShader)
          love.graphics.draw(screens[1],0+shadowOffsetX,0+shadowOffsetY)
-         love.graphics.setPixelEffect()
+         love.graphics.setShader()
       end
       love.graphics.setColor(255,255,255,255)
       love.graphics.draw(screens[1],0,0)
       if drawShadows==true then
-         love.graphics.setPixelEffect(shadowDitherShaderNoTexture)
+         love.graphics.setShader(shadowDitherShaderNoTexture)
          love.graphics.setColor(0,0,0,255)
          love.graphics.rectangle("fill", floor(centerX-200+shadowOffsetX), floor(centerY-5-75+150+shadowOffsetY), 400, 160 )
-         love.graphics.setPixelEffect()
+         love.graphics.setShader()
       end   
       love.graphics.setColor(255,255,255,255)
       love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75+150), 400, 160 )
@@ -117,10 +126,10 @@ function drawPauseScreen()
    local floor=math.floor
    
    if drawShadows==true then
-      love.graphics.setPixelEffect(shadowDitherShaderNoTexture)
+      love.graphics.setShader(shadowDitherShaderNoTexture)
       love.graphics.setColor(0,0,0,255)
       love.graphics.rectangle("fill", floor(centerX-200+shadowOffsetX), floor(centerY-5-75+shadowOffsetY), 400, 160 )
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end   
    love.graphics.setColor(255,255,255,255)
    love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75), 400, 160 )
@@ -133,17 +142,17 @@ function drawWinScreen()
    
    love.graphics.setColor(255,255,255,255)
    if drawShadows==true then
-      love.graphics.setPixelEffect(shadowDitherShader)
+      love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[2],0+shadowOffsetX,0+shadowOffsetY)
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end
    love.graphics.draw(screens[2],0,0)
    
    if drawShadows==true then
-      love.graphics.setPixelEffect(shadowDitherShaderNoTexture)
+      love.graphics.setShader(shadowDitherShaderNoTexture)
       love.graphics.setColor(0,0,0,255)
       love.graphics.rectangle("fill", floor(centerX-150+shadowOffsetX), floor(centerY+125-40+shadowOffsetY), 300, 80 )
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end   
    love.graphics.setColor(255,255,255,255)
    love.graphics.rectangle("fill", floor(centerX-150), floor(centerY+125-40), 300, 80 )
@@ -157,17 +166,17 @@ function drawGameOverScreen()
 
    love.graphics.setColor(255,255,255,255)
    if drawShadows==true then
-      love.graphics.setPixelEffect(shadowDitherShader)
+      love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[3],0+shadowOffsetX,0+shadowOffsetY)
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end
    love.graphics.draw(screens[3],0,0)
    
    if drawShadows==true then
-      love.graphics.setPixelEffect(shadowDitherShaderNoTexture)
+      love.graphics.setShader(shadowDitherShaderNoTexture)
       love.graphics.setColor(0,0,0,255)
       love.graphics.rectangle("fill", floor(centerX-300+shadowOffsetX), floor(centerY+75-40+shadowOffsetY), 600, 80 )
-      love.graphics.setPixelEffect()
+      love.graphics.setShader()
    end   
    love.graphics.setColor(255,255,255,255)
    love.graphics.rectangle("fill", floor(centerX-300), floor(centerY+75-40), 600, 80 )

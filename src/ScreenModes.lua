@@ -10,9 +10,13 @@ end
 
 
 function initializeWindowedMode()
-   love.graphics.setMode( width, height, false, false, 0 )
-   fullscreenWidth,fullscreenHeight,fullscreen,vSyncEnabled,fsaa=love.graphics.getMode()
-   love.graphics.setCaption("Arne's Breakout")
+   love.window.setMode( width, height, {fullscreen=false, vsync=false, msaa=0} )
+   local flags
+   fullscreenWidth,fullscreenHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vSyncEnabled=flags.vsync
+   fsaa=flags.msaa
+   love.window.setTitle("Arne's Breakout")
    borderX=0
    borderY=0
    numTimeStepsPerFrame = 1
@@ -21,8 +25,12 @@ function initializeWindowedMode()
 end
 
 function initializeFullscreenMode()
-   love.graphics.setMode( desktopWidth, desktopHeight, true, true, 0 )
-   fullscreenWidth,fullscreenHeight,fullscreen,vSyncEnabled,fsaa=love.graphics.getMode()
+   love.window.setMode( desktopWidth, desktopHeight, {fullscreen=true,vsync=true, msaa=0} )
+   local flags
+   fullscreenWidth,fullscreenHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vSyncEnabled=flags.vsync
+   fsaa=flags.msaa
    if fullscreenWidth>width then
       borderX=math.floor((fullscreenWidth-width)/2)
    end

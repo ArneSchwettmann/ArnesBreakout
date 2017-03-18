@@ -28,27 +28,17 @@ function getInputPlayer(playerNumber)
 			xInput = xInput * 2
 			yInput = yInput * 2
 		end
-		local joystickNum=-1
 		local joyXInput,joyYInput = 0,0
-		if love.joystick.isOpen(1) then
-				joystickNum=1
-		elseif love.joystick.isOpen(2) then
-		 		joystickNum=2
-		elseif love.joystick.isOpen(3) then
-		 		joystickNum=3
-		elseif love.joystick.isOpen(4) then
-		 		joystickNum=4
-		elseif love.joystick.isOpen(5) then
-		 		joystickNum=5
-		end
-		if joystickNum~=-1 then
-			local numButtons = love.joystick.getNumButtons( joystickNum )
-			if love.joystick.getNumAxes(joystickNum)>=1 then
-				joyXInput,joyYInput = love.joystick.getAxes(joystickNum)
+        local joystick
+		if numJoysticks>0 then
+            joystick = joysticks[1]
+			local numButtons = joystick:getButtonCount()
+			if joystick:getAxesCount()>=1 then
+				joyXInput,joyYInput = joystick:getAxes()
 				joyXInput,joyYInput=joyXInput * 500,joyYInput * 500
 			end
-			if love.joystick.getNumHats(joystickNum)>=1 then
-				local hatDirection = love.joystick.getHat(joystickNum, 1)
+			if joystick:getHatCount()>=1 then
+				local hatDirection = joystick:getHat(1)
 				if hatDirection == 'u' then
 					joyYInput = -500
 				elseif hatDirection == 'd' then
@@ -73,7 +63,7 @@ function getInputPlayer(playerNumber)
 			end
 			if norm(joyXInput,joyYInput) >= 0.15 * 500 then
 				if numButtons>0 then
-					if anyButtonPressed(joystickNum, numButtons ) then
+					if anyButtonPressed(joystick,numButtons) then
 						joyXInput,joyYInput=2 * joyXInput, 2 * joyYInput
 					end
 					if math.abs(joyXInput)>math.abs(xInput) then
@@ -89,22 +79,20 @@ function getInputPlayer(playerNumber)
    return xInput,yInput
 end       
 
-function anyButtonPressed(joystickNum,numButtons)
+function anyButtonPressed(joystick,numButtons)
 	local returnValue=false
 	if numButtons>0 then 
 		for i=1,numButtons do
-			if love.joystick.isDown( joystickNum, i ) then
+			if joystick:isDown(i) then
 				returnValue=true
 			end
 		end
 	end
 	return returnValue
 end
-		
-		
 
 function love.mousepressed(x, y, button)
-   if gameIsPaused==false and waitingForClick and button == 'l' then
+   if gameIsPaused==false and waitingForClick and button == 1 then
       waitingForClick=false
    end
 end
@@ -146,7 +134,7 @@ function love.keypressed(key, unicode)
          end
       end
    elseif key == 'h' then
-      if love.graphics.isSupported("pixeleffect") then
+      if true then
          drawShadows=not drawShadows
       end
    elseif key == 'r' then

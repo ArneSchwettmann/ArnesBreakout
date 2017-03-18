@@ -1,7 +1,6 @@
 function love.load()
    debug=false
    
-   
    --all globals listed here
    
    infiniteMass=1e10
@@ -25,25 +24,28 @@ function love.load()
    graphicsScaleFactor = 1.0 -- whether we are scaling the gfx in fullscreen
    
    showFPS = false -- display FPS?
+   
+   joysticks = {}
+   numJoysticks = 0
      
    shadowOffsetX=8
    shadowOffsetY=8
    numPlayers=1
    
- 	gameIsPaused = false
+   gameIsPaused = false
    gameWasPaused = true
    waitingForClick = true
    gameWon = false
    timeSinceUnpausing=0
    timeToWaitAfterPause=0.025
    timeSinceLastFrame=0
-	--timeSinceLastDraw=0
+   --timeSinceLastDraw=0
    numTimeStepsPerFrame = 1
    
    maxVelocity = 1000
-	minVelocity = 1/60
+   minVelocity = 1/60
    mouseScaleX = 200
-	mouseScaleY = 200
+   mouseScaleY = 200
    numLevels=4
    numBalls=0
    currentLevel=0
@@ -95,17 +97,21 @@ function love.load()
    }
    
    -- initialize GFX mode
-   love.graphics.setMode( 0, 0, false, false, 0 )
-   desktopWidth,desktopHeight,fullscreen,vsyncEnabled,fsaa=love.graphics.getMode()
+   love.window.setMode( 800, 500, {fullscreen=false, vsync=false, msaa=0} )
+   local flags
+   desktopWidth,desktopHeight,flags=love.window.getMode()
+   fullscreen=flags.fullscreen
+   vSyncEnabled=flags.vsync
+   fsaa=flags.msaa
    --initializeWindowedMode()
-   love.graphics.setDefaultImageFilter("linear","linear")
+   love.graphics.setDefaultFilter("linear","linear")
    initializeFullscreenMode()
    unpauseGame()
       
-   -- check pixelShader support and define shaders for dithered shadows
-   if love.graphics.isSupported("pixeleffect") then
+   -- define shaders for dithered shadows
+   if true then
       drawShadows=true
-      shadowDitherShader = love.graphics.newPixelEffect([[
+      shadowDitherShader = love.graphics.newShader([[
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, Texel(texture, texture_coords).a);
@@ -114,7 +120,7 @@ function love.load()
             return pixelColor;
         }
       ]])
-      shadowDitherShaderNoTexture = love.graphics.newPixelEffect([[
+      shadowDitherShaderNoTexture = love.graphics.newShader([[
         vec4 effect(vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords)
         {
             vec4 pixelColor=vec4(0.0, 0.0, 0.0, 1.0);
@@ -141,10 +147,14 @@ function love.load()
    bigFont = love.graphics.newImageFont(fontImg,
       " !#$%&'()*+,-.0123456789:;<=>?"..
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
-      "[/]abcdefghijklmnopqrstuvwxyz")   
+      "[/]abcdefghijklmnopqrstuvwxyz", 1)   
    
    love.graphics.setFont(bigFont)
    love.graphics.setBackgroundColor(255,255,255)
+   
+   -- setup Joystick
+   joysticks = love.joystick.getJoysticks()
+   numJoysticks = love.joystick.getJoystickCount()
    
    --pauseGame()
    currentLevel=1
