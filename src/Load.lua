@@ -12,7 +12,11 @@ function love.load()
    height = 500
    centerX = 400
    centerY = 250
-   
+
+   mouseXOld = centerX
+   mouseYOld = centerY
+   touching = false
+
    desktopWidth=0 -- fullscreen size, will be populated later
    desktopHeight=0 -- fullscreen size, will be populated later
    fullscreenWidth=0

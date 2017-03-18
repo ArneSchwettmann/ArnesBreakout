@@ -2,9 +2,16 @@ function getInputPlayer(playerNumber)
    local xInput,yInput=0,0
    if playerNumber==1 then
       local mouseX, mouseY = love.mouse.getPosition()
-      love.mouse.setPosition(centerX,centerY)
-      xInput=mouseScaleX*(mouseX-centerX)
-      yInput=mouseScaleY*(mouseY-centerY)
+      if touching then
+         xInput=mouseScaleX*(mouseX-mouseXOld)
+         yInput=mouseScaleY*(mouseY-mouseYOld)
+         mouseXOld=mouseX
+         mouseYOld=mouseY
+      else
+         love.mouse.setPosition(centerX,centerY)
+         xInput=mouseScaleX*(mouseX-centerX)
+         yInput=mouseScaleY*(mouseY-centerY)
+      end
    elseif playerNumber==2 then
       if love.keyboard.isDown("left") then
          xInput = -500     
@@ -91,9 +98,24 @@ function anyButtonPressed(joystick,numButtons)
 	return returnValue
 end
 
-function love.mousepressed(x, y, button)
+function love.mousepressed(x, y, button, istouch)
    if gameIsPaused==false and waitingForClick and button == 1 then
       waitingForClick=false
+   end
+   if istouch then
+      touching = true
+   else
+      touching = false
+   end
+   if displayingTitleScreen then 
+      if button == 1 then
+         numPlayers=1
+         startGame()
+      end
+   elseif gameLost then
+      if button == 1 then
+         titleScreen()
+      end
    end
 end
 
