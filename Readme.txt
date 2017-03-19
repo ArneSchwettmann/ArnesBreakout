@@ -5,6 +5,6 @@ This is a version of the classic brick-breaking game written by Arne Schwettmann
 Player 1 controls with the mouse.
 Player 2 controls with cursor keys plus shift for turbo, or gamepad (any button is turbo).
 
-Pre-compiled executables for Windows and OSX are in the bin directory. To compile from source under Windows, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
+Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesbreakout/releases
 
-See License.txt for licensing details
+See License.txt and Readme_License.txt for licensing details
