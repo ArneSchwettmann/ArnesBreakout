@@ -12,7 +12,7 @@ To compile from source under Windows or OSX, simply drag the src directory onto 
 
 Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesbreakout/releases
 
-See License.txt for licensing details
+See License.txt and Readme_License.txt for licensing details
 
 Written by Arne Schwettmann 
 
