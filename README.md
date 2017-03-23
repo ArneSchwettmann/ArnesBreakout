@@ -8,9 +8,9 @@ This is a version of the classic brick-breaking game written in LUA, making use 
 Player 1 controls with the mouse (or touch on Android).
 Player 2 controls with cursor keys plus shift for turbo, or gamepad (any button is turbo).
 
-To compile from source under Windows or OSX, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
-
 Packages that are ready to run for Windows, OSX and Android can be downloaded from the "releases" page in github at www.github.com/arneschwettmann/arnesbreakout/releases
+
+To compile from source under Windows or OSX, simply drag the src directory onto Love.exe version 0.10.2. For more information on LÖVE, visit love2d.org.
 
 Written by Arne Schwettmann
 
