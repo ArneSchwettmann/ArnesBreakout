@@ -5,6 +5,11 @@ Physics-based ball and brick game written in LUA
 
 This is a version of the classic brick-breaking game written in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.10.2.
 
+Features:
+- physics-based brick breaking game
+- up to two player simultaneous
+- hand-coded physics with freely movable player bat, (in)elastic collisions, gravity etc.
+
 Player 1 controls with the mouse (or touch on Android).
 Player 2 controls with cursor keys plus shift for turbo, or gamepad (any button is turbo).
 
