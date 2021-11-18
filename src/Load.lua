@@ -146,15 +146,15 @@ function love.load()
    -- set screenfont and color
 	--local f = love.graphics.newFont(8)
    --love.graphics.setFont(f)
-   local fontImg=love.graphics.newImage(gfxDir.."fonts/Verdana12.png")
-   fontImg:setFilter("linear","linear")
+   local fontImg=love.image.newImageData(gfxDir.."fonts/Verdana12.png")
+   --fontImg:setFilter("linear","linear")
    bigFont = love.graphics.newImageFont(fontImg,
       " !#$%&'()*+,-.0123456789:;<=>?"..
       "ABCDEFGHIJKLMNOPQRSTUVWXYZ"..
       "[/]abcdefghijklmnopqrstuvwxyz", 1)   
    
    love.graphics.setFont(bigFont)
-   love.graphics.setBackgroundColor(255,255,255)
+   love.graphics.setBackgroundColor(1,1,1)
    
    -- setup Joystick
    joysticks = love.joystick.getJoysticks()

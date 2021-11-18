@@ -1,6 +1,6 @@
 Arne's Breakout
 
-This is a version of the classic brick-breaking game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.10.2.
+This is a version of the classic brick-breaking game written by Arne Schwettmann in LUA, making use of the LÖVE game framework. It is written for LÖVE 0.11.3.
 
 Features:
 - physics-based brick breaking game

@@ -11,7 +11,7 @@ function love.draw()
       love.graphics.scale(graphicsScaleFactor,graphicsScaleFactor)
    end
 
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.rectangle('fill',0,0,width+2*borderX+1,height+2*borderY+1)
    
    love.graphics.translate(borderX,borderY)
@@ -26,7 +26,7 @@ function love.draw()
       return
    end
 
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.draw(backgrounds[currentLevel],0,0)
    -- draw the shadows first
    if drawShadows==true then
@@ -57,14 +57,14 @@ function love.draw()
    end
    
    -- draw instruction on top left
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.print("Use mouse (P1), arrows+shift/joy. (P2), q quit, p pause", 10, 7)
    love.graphics.print("Score: "..score, 400, 7)
    love.graphics.print("Level: "..currentLevel.." of "..numLevels,500,7)
    love.graphics.print("Lives: ",600,7)
    
    -- depending on state of game, we draw other messages
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    if gameWon then
       drawWinScreen()
    end
@@ -97,24 +97,24 @@ end
 function drawTitleScreen()
       local floor=math.floor
 
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(backgrounds[currentLevel],0,0)
       if drawShadows==true then
          love.graphics.setShader(shadowDitherShader)
          love.graphics.draw(screens[1],0+shadowOffsetX,0+shadowOffsetY)
          love.graphics.setShader()
       end
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.draw(screens[1],0,0)
       if drawShadows==true then
          love.graphics.setShader(shadowDitherShaderNoTexture)
-         love.graphics.setColor(0,0,0,255)
+         love.graphics.setColor(0,0,0,1)
          love.graphics.rectangle("fill", floor(centerX-200+shadowOffsetX), floor(centerY-5-75+150+shadowOffsetY), 400, 160 )
          love.graphics.setShader()
       end   
-      love.graphics.setColor(255,255,255,255)
+      love.graphics.setColor(1,1,1,1)
       love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75+150), 400, 160 )
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.printf("1 or Click - Start 1 player game", 0, centerY-10-54+150,width,"center")
       love.graphics.printf("2 - Start 2 player game", 0, centerY-10-27+150,width,"center")
       love.graphics.printf("f - Toggle fullscreen", 0, centerY-10+150,width,"center")
@@ -127,20 +127,20 @@ function drawPauseScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-200+shadowOffsetX), floor(centerY-5-75+shadowOffsetY), 400, 160 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75), 400, 160 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Paused! Press p to continue", 0, centerY-5,width,"center")
 end
 
 function drawWinScreen()
    local floor=math.floor
    
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[2],0+shadowOffsetX,0+shadowOffsetY)
@@ -150,13 +150,13 @@ function drawWinScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-150+shadowOffsetX), floor(centerY+125-40+shadowOffsetY), 300, 80 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-150), floor(centerY+125-40), 300, 80 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Congratulations, you won!", 0, centerY-5+125-15,width,"center")   
    love.graphics.printf("Press r to restart!", 0, centerY-5+125+15,width,"center")   
 end
@@ -164,7 +164,7 @@ end
 function drawGameOverScreen()
    local floor=math.floor
 
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShader)
       love.graphics.draw(screens[3],0+shadowOffsetX,0+shadowOffsetY)
@@ -174,12 +174,12 @@ function drawGameOverScreen()
    
    if drawShadows==true then
       love.graphics.setShader(shadowDitherShaderNoTexture)
-      love.graphics.setColor(0,0,0,255)
+      love.graphics.setColor(0,0,0,1)
       love.graphics.rectangle("fill", floor(centerX-300+shadowOffsetX), floor(centerY+75-40+shadowOffsetY), 600, 80 )
       love.graphics.setShader()
    end   
-   love.graphics.setColor(255,255,255,255)
+   love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-300), floor(centerY+75-40), 600, 80 )
-   love.graphics.setColor(0,0,0,255)
+   love.graphics.setColor(0,0,0,1)
    love.graphics.printf("Press r to restart or c to continue", 0, centerY-5+75,width,"center")
 end
