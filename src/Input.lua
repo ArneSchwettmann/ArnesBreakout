@@ -148,13 +148,6 @@ function love.keypressed(key, unicode)
          currentLevel=currentLevel-1
          initializeLevel(currentLevel)
       end
-   elseif key == 's' then
-      for k,obj in pairs(objects) do
-         if obj.type=="ball" then
-            obj.vX=0
-            obj.vY=0
-         end
-      end
    elseif key == 'h' then
       if true then
          drawShadows=not drawShadows
@@ -188,7 +181,18 @@ function love.keypressed(key, unicode)
      cycleScreenModes()
    elseif key == 'd' then
      toggleScaling()
+   elseif key == 's' then
+     cycleMouseSensitivity()
    elseif key == 'o' then
       showFPS= not showFPS
+   end
+end
+
+function cycleMouseSensitivity()
+   mouseScaleX = mouseScaleX + 100
+   mouseScaleY = mouseScaleY + 100
+   if mouseScaleX > 1000 then
+      mouseScaleX = 100
+      mouseScaleY = 100
    end
 end

@@ -48,8 +48,8 @@ function love.load()
    
    maxVelocity = 1000
    minVelocity = 1/60
-   mouseScaleX = 200
-   mouseScaleY = 200
+   mouseScaleX = 600
+   mouseScaleY = 600
    numLevels=4
    numBalls=0
    currentLevel=0

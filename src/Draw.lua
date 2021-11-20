@@ -115,11 +115,13 @@ function drawTitleScreen()
       love.graphics.setColor(1,1,1,1)
       love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75+150), 400, 160 )
       love.graphics.setColor(0,0,0,1)
-      love.graphics.printf("1 or Click - Start 1 player game", 0, centerY-10-54+150,width,"center")
-      love.graphics.printf("2 - Start 2 player game", 0, centerY-10-27+150,width,"center")
-      love.graphics.printf("f - Toggle fullscreen", 0, centerY-10+150,width,"center")
-      love.graphics.printf("d - Toggle scaling (fullscreen only)", 0, centerY-10+27+150,width,"center")
-      love.graphics.printf("q - Quit", 0, centerY-10+54+150,width,"center")
+      verticalSpacing = 25
+      love.graphics.printf("1 or Click - Start 1 player game", 0, centerY-10-2.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("2 - Start 2 player game", 0, centerY-10-1.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("s - Mouse Sensitivity: " ..mouseScaleX / 100, 0, centerY-10-0.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("f - Toggle fullscreen", 0, centerY-10+0.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("d - Toggle scaling (fullscreen only)", 0, centerY-10+1.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("q - Quit", 0, centerY-10+2.5*verticalSpacing+150,width,"center")
 end
 
 function drawPauseScreen()
