@@ -1,5 +1,7 @@
 function getInputPlayer(playerNumber)
    local xInput,yInput=0,0
+
+-- mouse/touch
    if playerNumber==1 then
       local mouseX, mouseY = love.mouse.getPosition()
       if touching then
@@ -13,6 +15,32 @@ function getInputPlayer(playerNumber)
          xInput=mouseScaleX*(mouseX-centerX)
          yInput=mouseScaleY*(mouseY-centerY)
       end
+   end
+
+-- keyboard
+   if playerNumber==1 then
+      if love.keyboard.isDown("a") then
+         xInput = -500     
+      end
+      if love.keyboard.isDown("d") then
+         xInput = 500
+      end
+      if love.keyboard.isDown("a") and love.keyboard.isDown("d") then
+         xInput = 0
+      end
+      if love.keyboard.isDown("w") then
+         yInput = -500    
+      end
+      if love.keyboard.isDown("s") then
+         yInput = 500
+      end
+      if love.keyboard.isDown("w") and love.keyboard.isDown("s") then
+         yInput = 0
+      end
+      if love.keyboard.isDown("rctrl") or love.keyboard.isDown("lctrl") then
+         xInput = xInput * 2
+         yInput = yInput * 2
+      end      
    elseif playerNumber==2 then
       if love.keyboard.isDown("left") then
          xInput = -500     
@@ -37,7 +65,8 @@ function getInputPlayer(playerNumber)
          yInput = yInput * 2
       end
    end
--- Joystick input for player 1 and 2
+
+-- joystick/gamepad
    local joyXInput,joyYInput = 0,0
    local buttonInput = false
    local joystick
@@ -175,6 +204,8 @@ function love.gamepadpressed(joystick, button)
     and button ~= "dpright") then
       if (button == "back") then
          love.keypressed('q')
+      elseif (button == "start") then
+         love.keypressed('p')
       elseif gameIsPaused==false and waitingForClick then
          waitingForClick=false
       elseif displayingTitleScreen then
@@ -187,14 +218,18 @@ function love.gamepadpressed(joystick, button)
             end
          end
       elseif gameLost then
-         titleScreen()
+         if button=="a" then
+            continueGame()
+         elseif button=="x" then
+            titleScreen()
+         end
       end
    end
 end
 
 function love.keypressed(key, unicode)
    if displayingTitleScreen then 
-      if key == 'q' then
+      if key == 'q' or key == 'escape' then
          love.event.quit()
       elseif key == '2' then
          numPlayers=2
@@ -203,7 +238,7 @@ function love.keypressed(key, unicode)
          numPlayers=1
          startGame()
       end
-   elseif key == 'q' then
+   elseif key == 'q' or key == 'escape' then
       titleScreen()
    end
    if key == 'p' then
@@ -212,8 +247,6 @@ function love.keypressed(key, unicode)
       else
          unpauseGame()
       end
-   elseif key == 'w' then
-      won()
    elseif key == 'm' then
       bricksLeftToDestroy=0
    elseif key == 'n' then
@@ -252,9 +285,9 @@ function love.keypressed(key, unicode)
       end
    elseif key == 'f' then
      cycleScreenModes()
-   elseif key == 'd' then
+   elseif key == 'g' then
      toggleScaling()
-   elseif key == 's' then
+   elseif key == 'j' then
      cycleMouseSensitivity()
    elseif key == 'o' then
       showFPS= not showFPS
@@ -262,10 +295,10 @@ function love.keypressed(key, unicode)
 end
 
 function cycleMouseSensitivity()
-   mouseScaleX = mouseScaleX + 100
-   mouseScaleY = mouseScaleY + 100
+   mouseScaleX = mouseScaleX + 50
+   mouseScaleY = mouseScaleY + 50
    if mouseScaleX > 1000 then
-      mouseScaleX = 100
-      mouseScaleY = 100
+      mouseScaleX = 50
+      mouseScaleY = 50
    end
 end

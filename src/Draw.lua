@@ -58,7 +58,7 @@ function love.draw()
    
    -- draw instruction on top left
    love.graphics.setColor(0,0,0,1)
-   love.graphics.print("P1 mouse/joy1, P2 arrows+shift/joy2, q quit, p pause", 10, 7)
+   love.graphics.print("P1 mouse/wasd+ctrl/joy1, P2 arrows+shift/joy2", 10, 7)
    love.graphics.print("Score: "..score, 400, 7)
    love.graphics.print("Level: "..currentLevel.." of "..numLevels,500,7)
    love.graphics.print("Lives: ",600,7)
@@ -118,9 +118,9 @@ function drawTitleScreen()
       verticalSpacing = 25
       love.graphics.printf("Fire(1) or 1 or Click or Touch - Start 1 player game", 0, centerY-10-2.5*verticalSpacing+150,width,"center")
       love.graphics.printf("Fire(2) or 2 - Start 2 player game", 0, centerY-10-1.5*verticalSpacing+150,width,"center")
-      love.graphics.printf("s - Mouse Sensitivity: " ..mouseScaleX / 100, 0, centerY-10-0.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("j - Mouse Sensitivity: " ..mouseScaleX / 50, 0, centerY-10-0.5*verticalSpacing+150,width,"center")
       love.graphics.printf("f - Toggle fullscreen", 0, centerY-10+0.5*verticalSpacing+150,width,"center")
-      love.graphics.printf("d - Toggle scaling (fullscreen only)", 0, centerY-10+1.5*verticalSpacing+150,width,"center")
+      love.graphics.printf("g - Toggle scaling (fullscreen only)", 0, centerY-10+1.5*verticalSpacing+150,width,"center")
       love.graphics.printf("q or Select - Quit", 0, centerY-10+2.5*verticalSpacing+150,width,"center")
 end
 
@@ -136,7 +136,7 @@ function drawPauseScreen()
    love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-200), floor(centerY-5-75), 400, 160 )
    love.graphics.setColor(0,0,0,1)
-   love.graphics.printf("Paused! Press p to continue", 0, centerY-5,width,"center")
+   love.graphics.printf("Paused! Press p or start to continue", 0, centerY-5,width,"center")
 end
 
 function drawWinScreen()
@@ -183,5 +183,5 @@ function drawGameOverScreen()
    love.graphics.setColor(1,1,1,1)
    love.graphics.rectangle("fill", floor(centerX-300), floor(centerY+75-40), 600, 80 )
    love.graphics.setColor(0,0,0,1)
-   love.graphics.printf("Press r to restart or c to continue", 0, centerY-5+75,width,"center")
+   love.graphics.printf("Press r (x) to restart, c (a) to continue", 0, centerY-5+75,width,"center")
 end
