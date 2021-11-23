@@ -195,6 +195,7 @@ end
 function love.touchreleased(id, x, y, dx, dy, pressure)
    touching = false
    touchId = nil
+   love.mouse.setPosition(centerX,centerY)
 end
 
 function love.gamepadpressed(joystick, button)
