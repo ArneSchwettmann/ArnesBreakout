@@ -20,7 +20,7 @@ function getInputPlayer(playerNumber)
 -- keyboard
    if playerNumber==1 then
       if love.keyboard.isDown("a") then
-         xInput = -500     
+         xInput = -500
       end
       if love.keyboard.isDown("d") then
          xInput = 500
@@ -29,7 +29,7 @@ function getInputPlayer(playerNumber)
          xInput = 0
       end
       if love.keyboard.isDown("w") then
-         yInput = -500    
+         yInput = -500
       end
       if love.keyboard.isDown("s") then
          yInput = 500
@@ -40,7 +40,7 @@ function getInputPlayer(playerNumber)
       if love.keyboard.isDown("rctrl") or love.keyboard.isDown("lctrl") then
          xInput = xInput * 2
          yInput = yInput * 2
-      end      
+      end
    elseif playerNumber==2 then
       if love.keyboard.isDown("left") then
          xInput = -500     
@@ -90,7 +90,7 @@ function getInputPlayer(playerNumber)
             buttonInput = true
          end
          if joystick:isGamepadDown("back") then
-            love.keypressed("q")
+            love.keypressed('q')
          end
       else
          local numButtons = joystick:getButtonCount()
@@ -203,7 +203,7 @@ function love.gamepadpressed(joystick, button)
     and button ~= "dpleft"
     and button ~= "dpright") then
       if (button == "back") then
-         love.keypressed('q')
+         love.keypressed('escape')
       elseif (button == "start") then
          love.keypressed('p')
       elseif gameIsPaused==false and waitingForClick then
@@ -229,7 +229,7 @@ end
 
 function love.keypressed(key, unicode)
    if displayingTitleScreen then 
-      if key == 'q' or key == 'escape' then
+      if key == 'escape' then
          love.event.quit()
       elseif key == '2' then
          numPlayers=2
@@ -238,7 +238,7 @@ function love.keypressed(key, unicode)
          numPlayers=1
          startGame()
       end
-   elseif key == 'q' or key == 'escape' then
+   elseif key == 'escape' then
       titleScreen()
    end
    if key == 'p' then
@@ -286,19 +286,35 @@ function love.keypressed(key, unicode)
    elseif key == 'f' then
      cycleScreenModes()
    elseif key == 'g' then
-     toggleScaling()
-   elseif key == 'j' then
-     cycleMouseSensitivity()
+      toggleScaling()
+   elseif key == 'k' then
+      cycleMouseSensitivityBackward()
+   elseif key == 'l' then
+      cycleMouseSensitivityForward()
    elseif key == 'o' then
-      showFPS= not showFPS
+      showFPS = not showFPS
+   elseif key == "space" then
+      if gameIsPaused==false and waitingForClick then
+         waitingForClick=false
+      end
    end
 end
 
-function cycleMouseSensitivity()
+function cycleMouseSensitivityForward()
    mouseScaleX = mouseScaleX + 50
    mouseScaleY = mouseScaleY + 50
    if mouseScaleX > 1000 then
+      mouseScaleX = 1000
+      mouseScaleY = 1000
+   end
+end
+
+function cycleMouseSensitivityBackward()
+   mouseScaleX = mouseScaleX - 50
+   mouseScaleY = mouseScaleY - 50
+   if mouseScaleX < 50 then
       mouseScaleX = 50
       mouseScaleY = 50
    end
 end
+
